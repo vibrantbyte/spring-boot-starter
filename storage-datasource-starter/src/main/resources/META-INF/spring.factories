@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.vibrantbyte.storage.datasource.DynamicDataSourceAutoConfiguration,\
+io.github.vibrantbyte.storage.datasource.TransactionAutoConfiguration
