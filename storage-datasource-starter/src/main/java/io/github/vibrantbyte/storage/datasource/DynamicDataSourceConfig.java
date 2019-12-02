@@ -1,5 +1,6 @@
 package io.github.vibrantbyte.storage.datasource;
 
+import io.github.vibrantbyte.storage.datasource.yml.YamlPropertyLoaderFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

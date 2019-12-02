@@ -1,9 +1,8 @@
 package io.github.vibrantbyte.storage.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.renrenche.config.refresh.ConfigReloadListener;
-import com.renrenche.spring.boot.patch.annotation.ConditionalOnFile;
-import com.renrenche.spring.boot.storage.datasource.sharding.ShardingJdbcConfig;
+import io.github.vibrantbyte.config.hotload.refresh.ConfigReloadListener;
+import io.github.vibrantbyte.storage.datasource.autoconfigure.condition.ConditionalOnFile;
 import io.github.vibrantbyte.storage.datasource.sharding.ShardingJdbcConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

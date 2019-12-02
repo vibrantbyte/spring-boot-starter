@@ -12,6 +12,18 @@
     <artifactId>storage-datasource-starter</artifactId>
     <name>storage-datasource-starter</name>
     <url>https://github.com/vibrantbyte/spring-boot-starter</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <sharding-jdbc.version>2.0.0</sharding-jdbc.version>
@@ -59,6 +71,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>2.2.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.vibrantbyte</groupId>
+            <artifactId>config-hotload-starter</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
 <!--        <dependency>-->

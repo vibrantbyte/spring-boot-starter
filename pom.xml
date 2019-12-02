@@ -11,6 +11,7 @@
         <module>storage-mybatis-starter</module>
         <module>storage-redis-starter</module>
         <module>storage-datasource-starter</module>
+        <module>config-hotload-starter</module>
     </modules>
     <packaging>pom</packaging>
     <name>spring-boot-starter</name>
