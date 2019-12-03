@@ -1,0 +1,4 @@
+spring:
+  config:
+    location: /Users/xiaoyueya/projects/javapro/github.com/vibrantbyte/spring-boot-starter/config-hotload-starter/src/test/resources,/Users/xiaoyueya/projects/javapro/github.com/vibrantbyte/spring-boot-starter/config-hotload-starter/src/test/resources/business/
+    name: bus,application
