@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 03 09:34:12 CST 2019
+jul-to-slf4j-1.7.28.jar>nexus-releases=
+jul-to-slf4j-1.7.28.pom>nexus-releases=

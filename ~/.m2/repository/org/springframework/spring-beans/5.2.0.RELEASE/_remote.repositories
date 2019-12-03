@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 03 09:34:12 CST 2019
+spring-beans-5.2.0.RELEASE.jar>nexus-releases=
+spring-beans-5.2.0.RELEASE.pom>nexus-releases=

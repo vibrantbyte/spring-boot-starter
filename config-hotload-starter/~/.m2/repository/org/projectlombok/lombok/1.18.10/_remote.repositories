@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 03 09:20:20 CST 2019
+lombok-1.18.10.jar>nexus-releases=
+lombok-1.18.10.pom>nexus-releases=

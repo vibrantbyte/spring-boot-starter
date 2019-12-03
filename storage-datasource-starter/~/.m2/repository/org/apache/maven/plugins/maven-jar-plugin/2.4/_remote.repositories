@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Dec 03 09:32:37 CST 2019
+maven-jar-plugin-2.4.jar>nexus-releases=
+maven-jar-plugin-2.4.pom>nexus-releases=
