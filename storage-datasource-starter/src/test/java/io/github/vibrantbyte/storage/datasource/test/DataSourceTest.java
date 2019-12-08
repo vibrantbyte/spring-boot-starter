@@ -113,7 +113,6 @@ public class DataSourceTest {
          */
         int result = template.update("INSERT INTO t_order(order_id, user_id) VALUES(90008, 92222)");
         Assert.assertEquals(result,1);
-        result = template.update("INSERT INTO t_order(order_id, user_id) VALUES(90008, 92221)");
 
         final boolean[] haveResult = {false};
         template.query("SELECT * FROM t_order WHERE order_id = 90008 and user_id = 92222", row -> {
@@ -128,7 +127,7 @@ public class DataSourceTest {
          */
         List<MasterSlaveDataSource> msList = allDataSources.get("mutiple_master_slaves");
         Assert.assertNotNull(msList);
-        Assert.assertEquals(msList.size(),1);
+        Assert.assertEquals(msList.size(),2);
 
         MasterSlaveDataSource ms = msList.get(0);
         DataSource slave = ms.getSlaves().get("mutiple_master_slaves_group_0_slave_0");
