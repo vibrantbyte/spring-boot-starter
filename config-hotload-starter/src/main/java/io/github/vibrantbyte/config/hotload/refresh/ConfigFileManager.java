@@ -8,6 +8,7 @@ import java.nio.file.WatchEvent;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -16,6 +17,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j(topic = "hot-load-starter")
 public class ConfigFileManager {
+
+    /**
+     * 刷新次数计数
+     */
+    private static final AtomicInteger REFRESH_TIMES = new AtomicInteger(0);
 
     private ApplicationContext applicationContext;
 
@@ -36,15 +42,16 @@ public class ConfigFileManager {
             log.debug("当前没有配置文件变更");
             return;
         }
+        int times = REFRESH_TIMES.incrementAndGet();
         // 刷新配置，清空变更记录，广播配置重新加载事件(该事件用于做类似数据源配置更新后的连接重建)
-        resolver.resolve();
+        resolver.resolve(times);
         Set<String> files = changes.keySet();
-        log.info("变更文件: {}", files);
+        log.info("[{}times]变更文件: {}",times, files);
         Set<String> filesCopy = new HashSet<>();
         filesCopy.addAll(files);
         changes.clear();
         applicationContext.publishEvent(new ConfigReloadedEvent(this, filesCopy));
-        log.info("所有配置文件刷新完毕");
+        log.info("[{}times]所有配置文件刷新完毕",times);
     }
 
     public void setResolver(RefreshResolver resolver) {

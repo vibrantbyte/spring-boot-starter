@@ -17,6 +17,6 @@ public class Config {
 
     @PostConstruct
     public void setup() {
-        System.out.println("config->" + id + ":" + name);
+        System.out.println("config -> id:" + id + ",name:" + name);
     }
 }

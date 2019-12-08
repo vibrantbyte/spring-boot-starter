@@ -67,12 +67,13 @@ public class ModifyRootDirectoryConfigFileTests {
 
     @SneakyThrows
     private void changeConfig() {
-        String first = RandomStringUtils.randomAlphabetic(10);
-        String second = RandomStringUtils.randomAlphabetic(10);
-        new Thread(() -> changeApplicationYml(first, second)).start();
-        TimeUnit.SECONDS.sleep(15);
-        assertThat(config.getId()).isEqualTo(first);
-        assertThat(config.getName()).isEqualTo(second);
+        String id = RandomStringUtils.randomAlphabetic(10);
+        String name = RandomStringUtils.randomAlphabetic(10);
+        System.out.println("id:" + id + ",name:"+name);
+        new Thread(() -> changeApplicationYml(id, name)).start();
+        TimeUnit.SECONDS.sleep(30);
+        assertThat(config.getId()).isEqualTo(id);
+        assertThat(config.getName()).isEqualTo(name);
     }
 
     @SneakyThrows
