@@ -10,7 +10,7 @@ import java.util.*;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 @ConfigurationProperties("spring.config")
 @Slf4j(topic = "hot-load-starter")

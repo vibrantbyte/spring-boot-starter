@@ -10,6 +10,8 @@ import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -23,29 +25,27 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 @Slf4j(topic = "hot-load-starter")
 @Configuration
-@AutoConfigureAfter(RefreshResolver.class)
-@ConditionalOnProperty("spring.config.location")
 @ConditionalOnClass(ContextRefresher.class)
 @EnableConfigurationProperties(ServiceConfigInfo.class)
+@ConditionalOnProperty("spring.config.location")
+@AutoConfigureAfter(RefreshResolver.class)
+@Import(RefreshResolver.class)
 public class HotLoadAutoConfiguration {
 
     private final ContextRefresher contextRefresher;
-
     private final ServiceConfigInfo serviceConfigInfo;
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Autowired
-    public HotLoadAutoConfiguration(ContextRefresher contextRefresher,
-                                    ServiceConfigInfo serviceConfigInfo) {
+    public HotLoadAutoConfiguration(ContextRefresher contextRefresher, ServiceConfigInfo serviceConfigInfo) {
         this.contextRefresher = contextRefresher;
         this.serviceConfigInfo = serviceConfigInfo;
     }
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Bean
     public RefreshResolver refreshResolver() {
@@ -75,15 +75,15 @@ public class HotLoadAutoConfiguration {
             ExecutorService localMonitorExecutor = Executors.newSingleThreadExecutor();
             localMonitorExecutor.execute(localMonitor);
 
-            // 创建配置刷新线程
-            ScheduledExecutorService refreshCheckerExecutor = Executors.newSingleThreadScheduledExecutor();
+            // 创建配置刷新线程 (定时刷新-3秒每次-无限循环)
+            ScheduledExecutorService refreshCheckerExecutor = Executors.newSingleThreadScheduledExecutor(Executors.defaultThreadFactory());
             refreshCheckerExecutor.scheduleAtFixedRate(() -> {
                 try {
                     manager.applyChanges();
                 } catch (Exception e) {
                     log.error("RefreshChecker执行失败", e);
                 }
-            }, 0, 1, TimeUnit.SECONDS);
+            }, 0, 3, TimeUnit.SECONDS);
         } catch (IOException e) {
             log.error("初始化LocalMonitor/配置刷新线程失败", e);
         }

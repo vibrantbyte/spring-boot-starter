@@ -1,0 +1,31 @@
+sharding-jdbc:
+   shardings:
+      - group-name : mutiple_master_slaves
+        default-data-source-name : mutiple_master_slaves_group_0
+        default-database-strategy :
+          inline:
+            shardingColumn : user_id
+            algorithmExpression : mutiple_master_slaves_group_${user_id % 2}
+        tables:
+          t_order:
+            actual-data-nodes : mutiple_master_slaves_group_${0..1}.t_order_${0..1}
+            table-strategy :
+              inline :
+                shardingColumn : order_id
+                algorithmExpression : t_order_${order_id % 2}
+            key-generator-column-name : order_id
+          t_order_item:
+            actual-data-nodes : mutiple_master_slaves_group_${0..1}.t_order_item_${0..1}
+            table-strategy :
+              inline :
+                shardingColumn : order_id
+                algorithmExpression : t_order_${order_id % 2}
+        binding-tables:
+          - t_order, t_order_item
+        props:
+          sql:
+            show: true
+          executor:
+            size: 100
+
+

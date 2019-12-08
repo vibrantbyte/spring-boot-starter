@@ -6,26 +6,19 @@ import org.springframework.cloud.context.refresh.ContextRefresher;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 @Slf4j(topic = "hot-load-starter")
 public class RefreshResolver {
 
     private ContextRefresher contextRefresher;
 
-    public void resolve(String filename) {
+    public void resolve(int times) {
         try {
+            log.info("[{}times]hot-load-starter Spring refresh 组件刷新！！！",times);
             contextRefresher.refresh();
         } catch (Exception e) {
-            log.error("刷新失败,e={}", e);
-        }
-    }
-
-    public void resolve() {
-        try {
-            contextRefresher.refresh();
-        } catch (Exception e) {
-            log.error("刷新失败,e={}", e);
+            log.error("[{}times]刷新失败,e={}", e);
         }
     }
 

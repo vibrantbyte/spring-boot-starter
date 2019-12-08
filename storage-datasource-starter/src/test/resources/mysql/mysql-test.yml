@@ -1,0 +1,187 @@
+
+mysql:
+  groups:
+#  --------------------------------------------------------
+#  默认组 可选 可以不配置
+#  --------------------------------------------------------
+    - name : default
+      master :
+        name : default_master_01
+        url : jdbc:mysql://127.0.0.1:3306/default?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+        username : root
+        password : Aa@12345
+        initialSize : 5
+        maxActive : 20
+        minIdle : 1
+        maxWait : 60000
+        poolPreparedStatements : true
+        maxPoolPreparedStatementPerConnectionSize : 20
+        validationQuery : SELECT 1
+        testOnBorrow : false
+        testOnReturn : false
+        testWhileIdle : true
+        timeBetweenEvictionRunsMillis : 60000
+        minEvictableIdleTimeMillis : 300000
+        filters : stat
+        transactionTimeout: 0
+
+#  --------------------------------------------------------
+#  模拟一主实例
+#  --------------------------------------------------------
+    - name : one_master
+      master :
+        name : one_master_master_01
+        url : jdbc:mysql://127.0.0.1:3306/one_master_master_01?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+        username : root
+        password : Aa@12345
+        initialSize : 5
+        maxActive : 20
+        minIdle : 1
+        maxWait : 60000
+        poolPreparedStatements : true
+        maxPoolPreparedStatementPerConnectionSize : 20
+        validationQuery : SELECT 1
+        testOnBorrow : false
+        testOnReturn : false
+        testWhileIdle : true
+        timeBetweenEvictionRunsMillis : 60000
+        minEvictableIdleTimeMillis : 300000
+        filters : stat
+
+#  --------------------------------------------------------
+#  模拟一主多从实例
+#  --------------------------------------------------------
+    - name : one_master_mutiple_slave
+      master :
+        name : one_master_mutiple_slave_master_0
+        url : jdbc:mysql://127.0.0.1:3306/one_master_mutiple_slave_master_0?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+        username : root
+        password : Aa@12345
+        initialSize : 5
+        maxActive : 20
+        minIdle : 1
+        maxWait : 60000
+        poolPreparedStatements : true
+        maxPoolPreparedStatementPerConnectionSize : 20
+        validationQuery : SELECT 1
+        testOnBorrow : false
+        testOnReturn : false
+        testWhileIdle : true
+        timeBetweenEvictionRunsMillis : 60000
+        minEvictableIdleTimeMillis : 300000
+        filters : stat
+      slaves :
+        - name : one_master_mutiple_slave_slave_0
+          url : jdbc:mysql://127.0.0.1:3306/one_master_mutiple_slave_slave_0?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+          username : root
+          password : Aa@12345
+          initialSize : 5
+          maxActive : 20
+          minIdle : 1
+          maxWait : 60000
+          poolPreparedStatements : true
+          maxPoolPreparedStatementPerConnectionSize : 20
+          validationQuery : SELECT 1
+          testOnBorrow : false
+          testOnReturn : false
+          testWhileIdle : true
+          timeBetweenEvictionRunsMillis : 60000
+          minEvictableIdleTimeMillis : 300000
+          filters : stat
+        - name : one_master_mutiple_slave_slave_1
+          url : jdbc:mysql://127.0.0.1:3306/one_master_mutiple_slave_slave_1?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+          username: root
+          password: Aa@12345
+          initialSize : 5
+          maxActive : 20
+          minIdle : 1
+          maxWait : 60000
+          poolPreparedStatements : true
+          maxPoolPreparedStatementPerConnectionSize : 20
+          validationQuery : SELECT 1
+          testOnBorrow : false
+          testOnReturn : false
+          testWhileIdle : true
+          timeBetweenEvictionRunsMillis : 60000
+          minEvictableIdleTimeMillis : 300000
+          filters : stat
+
+#  --------------------------------------------------------
+#  模拟多组主从实例组合  主要用于给sharding jdbc配置分库
+#  --------------------------------------------------------
+    - name : mutiple_master_slaves
+      master-slaves :
+        - name : mutiple_master_slaves_group_0
+          master :
+            name : mutiple_master_slaves_group_0_master_0
+            url : jdbc:mysql://127.0.0.1:3306/mutiple_master_slaves_group_0_master_0?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+            username : root
+            password : Aa@12345
+            initialSize : 5
+            maxActive : 20
+            minIdle : 1
+            maxWait : 60000
+            poolPreparedStatements : true
+            maxPoolPreparedStatementPerConnectionSize : 20
+            validationQuery : SELECT 1
+            testOnBorrow : false
+            testOnReturn : false
+            testWhileIdle : true
+            timeBetweenEvictionRunsMillis : 60000
+            minEvictableIdleTimeMillis : 300000
+            filters : stat
+          slaves :
+            - name : mutiple_master_slaves_group_0_slave_0
+              url : jdbc:mysql://127.0.0.1:3306/mutiple_master_slaves_group_0_slave_0?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+              username : root
+              password : Aa@12345
+              initialSize : 5
+              maxActive : 20
+              minIdle : 1
+              maxWait : 60000
+              poolPreparedStatements : true
+              maxPoolPreparedStatementPerConnectionSize : 20
+              validationQuery : SELECT 1
+              testOnBorrow : false
+              testOnReturn : false
+              testWhileIdle : true
+              timeBetweenEvictionRunsMillis : 60000
+              minEvictableIdleTimeMillis : 300000
+              filters : stat
+        - name : mutiple_master_slaves_group_1
+          master :
+            name : mutiple_master_slaves_group_1_master_1
+            url : jdbc:mysql://127.0.0.1:3306/mutiple_master_slaves_group_1_master_1?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+            username : root
+            password : Aa@12345
+            initialSize : 5
+            maxActive : 20
+            minIdle : 1
+            maxWait : 60000
+            poolPreparedStatements : true
+            maxPoolPreparedStatementPerConnectionSize : 20
+            validationQuery : SELECT 1
+            testOnBorrow : false
+            testOnReturn : false
+            testWhileIdle : true
+            timeBetweenEvictionRunsMillis : 60000
+            minEvictableIdleTimeMillis : 300000
+            filters : stat
+          slaves :
+            - name : mutiple_master_slaves_group_1_slave_1
+              url : jdbc:mysql://127.0.0.1:3306/mutiple_master_slaves_group_1_slave_1?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+              username : root
+              password : Aa@12345
+              initialSize : 5
+              maxActive : 20
+              minIdle : 1
+              maxWait : 60000
+              poolPreparedStatements : true
+              maxPoolPreparedStatementPerConnectionSize : 20
+              validationQuery : SELECT 1
+              testOnBorrow : false
+              testOnReturn : false
+              testWhileIdle : true
+              timeBetweenEvictionRunsMillis : 60000
+              minEvictableIdleTimeMillis : 300000
+              filters : stat

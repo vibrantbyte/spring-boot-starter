@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @RefreshScope
