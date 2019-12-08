@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Dec 08 22:32:30 CST 2019
+@default-maven-public-http\://10.255.30.234\:8081/repository/maven-public/.lastUpdated=1575815550253
+http\://maven.aliyun.com/nexus/content/repositories/central/.lastUpdated=1575815550621
+http\://10.255.30.234\:8081/repository/maven-public/.error=Could not transfer artifact org.apache.maven.plugins\:maven-compiler-plugin\:pom\:3.8.1 from/to maven-public (http\://10.255.30.234\:8081/repository/maven-public/)\: Connect to 10.255.30.234\:8081 [/10.255.30.234] failed\: Operation timed out (Connection timed out)

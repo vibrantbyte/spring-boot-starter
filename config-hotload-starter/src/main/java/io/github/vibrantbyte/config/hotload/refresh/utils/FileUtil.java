@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 public class FileUtil {
 
@@ -213,10 +213,10 @@ public class FileUtil {
      * This method returns the textual part of the filename before the last dot.
      * There must be no directory separator after the dot.
      * <pre>
-     * foo.txt    --> foo
-     * a\b\c.jpg  --> a\b\c
-     * a\b\c      --> a\b\c
-     * a.b\c      --> a.b\c
+     * foo.txt    - foo
+     * a\b\c.jpg  - a\b\c
+     * a\b\c      - a\b\c
+     * a.b\c      - a.b\c
      * </pre>
      * <p>
      * The output will be the same irrespective of the machine that the code is running on.
@@ -242,10 +242,10 @@ public class FileUtil {
      * This method will handle a file in either Unix or Windows format.
      * The text after the last forward or backslash is returned.
      * <pre>
-     * a/b/c.txt --> c.txt
-     * a.txt     --> a.txt
-     * a/b/c     --> c
-     * a/b/c/    --> ""
+     * a/b/c.txt - c.txt
+     * a.txt     - a.txt
+     * a/b/c     - c
+     * a/b/c/    - ""
      * </pre>
      * <p>
      * The output will be the same irrespective of the machine that the code is running on.
@@ -267,10 +267,10 @@ public class FileUtil {
      * This method will handle a file in either Unix or Windows format.
      * The text after the last forward or backslash and before the last dot is returned.
      * <pre>
-     * a/b/c.txt --> c
-     * a.txt     --> a
-     * a/b/c     --> c
-     * a/b/c/    --> ""
+     * a/b/c.txt - c
+     * a.txt     - a
+     * a/b/c     - c
+     * a/b/c/    - ""
      * </pre>
      * <p>
      * The output will be the same irrespective of the machine that the code is running on.

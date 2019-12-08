@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 public abstract class ConfigReloadListener implements ApplicationListener<ConfigReloadedEvent> {
 

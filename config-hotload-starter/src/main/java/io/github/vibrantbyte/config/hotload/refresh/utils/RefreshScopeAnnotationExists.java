@@ -8,7 +8,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 /**
  *
  * @author vibrant byte
- * @date 2017/6/13
+ *
  */
 public class RefreshScopeAnnotationExists implements Condition {
 
