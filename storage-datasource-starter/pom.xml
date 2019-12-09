@@ -7,85 +7,80 @@
         <groupId>io.github.vibrantbyte</groupId>
         <version>1.0.0</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>storage-datasource-starter</artifactId>
+    <version>1.0.5</version>
+    <packaging>jar</packaging>
     <name>storage-datasource-starter</name>
     <url>https://github.com/vibrantbyte/spring-boot-starter</url>
 
     <properties>
-        <sharding-jdbc.version>2.0.0</sharding-jdbc.version>
-        <druid.version>1.1.20</druid.version>
-        <mysql-connector.version>8.0.16</mysql-connector.version>
+        <!-- 文件拷贝时的编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 编译时的编码 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <!--vibrant依赖-->
+        <dependency>
+            <groupId>io.github.vibrantbyte</groupId>
+            <artifactId>config-hotload-starter</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <!--打包运行使用-->
         <dependency>
             <groupId>io.shardingjdbc</groupId>
             <artifactId>sharding-jdbc-core</artifactId>
-            <version>${sharding-jdbc.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
         </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector.version}</version>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.25</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
-            <version>2.2.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-            <version>2.2.0.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>io.github.vibrantbyte</groupId>
-            <artifactId>config-hotload-starter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
+        <!--test库-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>2.2.1.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.2.1.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -103,6 +98,19 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.7</version>
                 <dependencies>
@@ -115,5 +123,27 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/vibrantbyte/spring-boot-starter</url>
+        <connection>git@github.com:vibrantbyte/spring-boot-starter.git</connection>
+        <developerConnection>https://github.com/vibrantbyte</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>vibrant</name>
+            <email>codingrun@163.com</email>
+            <url>https://github.com/vibrantbyte</url>
+        </developer>
+    </developers>
 
 </project>
