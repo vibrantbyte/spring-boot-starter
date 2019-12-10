@@ -31,15 +31,39 @@
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
+        <!--spring 配置-->
+        <spring.test.version>5.2.1.RELEASE</spring.test.version>
         <spring.boot.starter.version>2.2.0.RELEASE</spring.boot.starter.version>
         <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
+        <spring.cloud.context.version>2.2.0.RELEASE</spring.cloud.context.version>
         <spring.boot.autoconfigure.version>2.2.0.RELEASE</spring.boot.autoconfigure.version>
         <spring.boot.configuration.processor.version>2.2.0.RELEASE</spring.boot.configuration.processor.version>
+        <spring.boot.starter.jdbc.version>2.2.0.RELEASE</spring.boot.starter.jdbc.version>
+        <spring.boot.test.version>2.2.0.RELEASE</spring.boot.test.version>
+
+        <!--data source-->
+        <sharding-jdbc.version>2.0.0</sharding-jdbc.version>
+        <druid.version>1.1.20</druid.version>
+        <mysql-connector.version>8.0.16</mysql-connector.version>
+
+        <!--工具配置-->
+        <apache.commons.lang3.version>3.8</apache.commons.lang3.version>
+        <projectlombok.lombok.version>1.18.10</projectlombok.lombok.version>
+        <yml.snakeyaml.version>1.25</yml.snakeyaml.version>
+
+        <!--测试使用-->
+        <spring.boot.starter.test.version>2.2.0.RELEASE</spring.boot.starter.test.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-context</artifactId>
+                <version>${spring.cloud.context.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot</artifactId>
@@ -59,6 +83,72 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
                 <version>${spring.boot.configuration.processor.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jdbc</artifactId>
+                <version>${spring.boot.starter.jdbc.version}</version>
+            </dependency>
+
+            <!--data source-->
+            <dependency>
+                <groupId>io.shardingjdbc</groupId>
+                <artifactId>sharding-jdbc-core</artifactId>
+                <version>${sharding-jdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+
+            <!--工具-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${projectlombok.lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${yml.snakeyaml.version}</version>
+            </dependency>
+
+            <!--测试使用-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring.boot.starter.test.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-test</artifactId>
+                <version>${spring.boot.test.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.test.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
