@@ -1,7 +1,7 @@
 package io.github.vibrantbyte.storage.datasource.test;
 
 import io.github.vibrantbyte.storage.datasource.DynamicDataSourceAutoConfiguration;
-import io.github.vibrantbyte.storage.datasource.DynamicDataSourceContext;
+import io.github.vibrantbyte.storage.datasource.DynamicDataSourceHolder;
 import io.github.vibrantbyte.storage.datasource.MasterSlaveDataSource;
 import io.github.vibrantbyte.storage.datasource.sharding.ShardingJdbcConfig;
 import io.shardingjdbc.core.api.HintManager;
@@ -49,7 +49,7 @@ public class DataSourceTest {
 
     @Test
     public void testDefaultDataSource() {
-        DynamicDataSourceContext.setCurrentGroupName("default");
+        DynamicDataSourceHolder.setCurrentGroupName("default");
         JdbcTemplate template = new JdbcTemplate(dataSource);
         template.query("SELECT * FROM t_order WHERE order_id = 1000 ", row -> {
             int orderId = row.getInt("order_id");
@@ -61,7 +61,7 @@ public class DataSourceTest {
 
     @Test
     public void testOneMasterDataSource() {
-        DynamicDataSourceContext.setCurrentGroupName("one_master");
+        DynamicDataSourceHolder.setCurrentGroupName("one_master");
         JdbcTemplate template = new JdbcTemplate(dataSource);
         template.query("SELECT * FROM t_order_item WHERE order_id = 1000 ", row -> {
             int itemId = row.getInt("item_id");
@@ -73,7 +73,7 @@ public class DataSourceTest {
 
     @Test
     public void testOneMasterSlaves() {
-        DynamicDataSourceContext.setCurrentGroupName("one_master_mutiple_slave");
+        DynamicDataSourceHolder.setCurrentGroupName("one_master_mutiple_slave");
         JdbcTemplate template = new JdbcTemplate(dataSource);
         template.update("INSERT INTO t_order(order_id, user_id) VALUES(-1000, -2222)");
         template.query("SELECT * FROM t_order WHERE order_id = -1000", row -> {
@@ -106,7 +106,7 @@ public class DataSourceTest {
         /**
          * 测试拆库拆表
          */
-        DynamicDataSourceContext.setCurrentGroupName("mutiple_master_slaves");
+        DynamicDataSourceHolder.setCurrentGroupName("mutiple_master_slaves");
         JdbcTemplate template = new JdbcTemplate(dataSource);
         /**
          * 测试写入数据
@@ -138,7 +138,7 @@ public class DataSourceTest {
         /**
          * 模拟从从库读取
          */
-        DynamicDataSourceContext.setCurrentGroupName("mutiple_master_slaves");
+        DynamicDataSourceHolder.setCurrentGroupName("mutiple_master_slaves");
         template = new JdbcTemplate(dataSource);
         Object rs = template.queryForObject("SELECT * FROM t_order WHERE order_id = 90008 and user_id = 92222", (RowMapper<Object>) (rs1, rowNum) -> rs1.getInt("user_id"));
         Assert.assertEquals(rs,92222);
@@ -147,7 +147,7 @@ public class DataSourceTest {
     @Test
     @Transactional
     public void testMultiTransactional() {
-        DynamicDataSourceContext.setCurrentGroupName("default");
+        DynamicDataSourceHolder.setCurrentGroupName("default");
         JdbcTemplate template = new JdbcTemplate(dataSource);
         template.update("INSERT INTO t_order(order_id, user_id) VALUES(2001, 2001)");
         template.query("SELECT * FROM t_order WHERE order_id = 2001", row -> {
@@ -156,7 +156,7 @@ public class DataSourceTest {
             System.out.println("default: orderId="+orderId);
             Assert.assertEquals(userId,2001);
         });
-        DynamicDataSourceContext.setCurrentGroupName("one_master_mutiple_slave");
+        DynamicDataSourceHolder.setCurrentGroupName("one_master_mutiple_slave");
         JdbcTemplate template2 = new JdbcTemplate(dataSource);
         template2.update("INSERT INTO t_order(order_id, user_id) VALUES(2011, 2011)");
         template2.query("SELECT * FROM t_order WHERE order_id = 2011", row -> {

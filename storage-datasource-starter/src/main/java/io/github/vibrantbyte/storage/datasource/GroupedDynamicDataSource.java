@@ -14,7 +14,7 @@ public class GroupedDynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        String name = DynamicDataSourceContext.getCurrentGroupName();
+        String name = DynamicDataSourceHolder.getCurrentGroupName();
         if (null != name && name.length() > 0) {
             return name;
         } else {

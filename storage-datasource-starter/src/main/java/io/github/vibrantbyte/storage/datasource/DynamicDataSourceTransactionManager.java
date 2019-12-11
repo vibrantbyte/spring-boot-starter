@@ -28,13 +28,13 @@ public class DynamicDataSourceTransactionManager extends DataSourceTransactionMa
 
     @Override
     protected void doBegin(Object transaction, TransactionDefinition definition) {
-        DynamicDataSourceContext.setCurrentGroupName(this.groupName);
+        DynamicDataSourceHolder.setCurrentGroupName(this.groupName);
         super.doBegin(transaction, definition);
     }
 
     @Override
     protected void doCleanupAfterCompletion(Object transaction) {
         super.doCleanupAfterCompletion(transaction);
-        DynamicDataSourceContext.clear();
+        DynamicDataSourceHolder.clear();
     }
 }
