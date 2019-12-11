@@ -4,13 +4,12 @@ import com.alibaba.druid.pool.DruidDataSource;
 import io.github.vibrantbyte.config.hotload.refresh.ConfigReloadListener;
 import io.github.vibrantbyte.config.hotload.refresh.autoconfigure.condition.ConditionalOnFile;
 import io.github.vibrantbyte.storage.datasource.sharding.ShardingJdbcConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
@@ -20,13 +19,13 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * @author vibrant byte
  */
+@Slf4j(topic = "storage-datasource-starter")
 @Configuration
 @ConditionalOnFile(resources = {"file:${spring.config.location}/mysql/mysql-${spring.profiles.active}.yml", "classpath:mysql/mysql-${spring.profiles.active}.yml"})
 @ConditionalOnClass({DataSource.class})
 @Import({DynamicDataSourceConfig.class, ShardingJdbcConfig.class})
 public class DynamicDataSourceAutoConfiguration extends AbstractDynamicAutoConfiguration {
 
-    private Logger log = LoggerFactory.getLogger(DynamicDataSourceAutoConfiguration.class);
 
     @Autowired
     private DynamicDataSourceConfig dataSourceConfig;

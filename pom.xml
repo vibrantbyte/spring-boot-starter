@@ -33,13 +33,13 @@
 
         <!--spring 配置-->
         <spring.test.version>5.2.1.RELEASE</spring.test.version>
-        <spring.boot.starter.version>2.2.0.RELEASE</spring.boot.starter.version>
-        <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
-        <spring.cloud.context.version>2.2.0.RELEASE</spring.cloud.context.version>
-        <spring.boot.autoconfigure.version>2.2.0.RELEASE</spring.boot.autoconfigure.version>
-        <spring.boot.configuration.processor.version>2.2.0.RELEASE</spring.boot.configuration.processor.version>
-        <spring.boot.starter.jdbc.version>2.2.0.RELEASE</spring.boot.starter.jdbc.version>
-        <spring.boot.test.version>2.2.0.RELEASE</spring.boot.test.version>
+        <spring.boot.starter.version>2.1.6.RELEASE</spring.boot.starter.version>
+        <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
+        <spring.cloud.context.version>2.1.4.RELEASE</spring.cloud.context.version>
+        <spring.boot.autoconfigure.version>2.1.6.RELEASE</spring.boot.autoconfigure.version>
+        <spring.boot.configuration.processor.version>2.1.6.RELEASE</spring.boot.configuration.processor.version>
+        <spring.boot.starter.jdbc.version>2.1.6.RELEASE</spring.boot.starter.jdbc.version>
+        <spring.boot.test.version>2.1.6.RELEASE</spring.boot.test.version>
 
         <!--data source-->
         <sharding-jdbc.version>2.0.0</sharding-jdbc.version>
@@ -52,8 +52,16 @@
         <yml.snakeyaml.version>1.25</yml.snakeyaml.version>
 
         <!--测试使用-->
-        <spring.boot.starter.test.version>2.2.0.RELEASE</spring.boot.starter.test.version>
+        <spring.boot.starter.test.version>2.1.6.RELEASE</spring.boot.starter.test.version>
         <junit.version>4.12</junit.version>
+
+        <!--plugin version-->
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.source.plugin.version>3.2.0</maven.source.plugin.version>
+        <maven.site.plugin.version>3.7</maven.site.plugin.version>
+
+        <!--plugin dependency-->
+        <apache.maven.doxia.site.renderer>1.8</apache.maven.doxia.site.renderer>
     </properties>
 
 
@@ -152,4 +160,67 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven.site.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-site-renderer</artifactId>
+                            <version>${apache.maven.doxia.site.renderer}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/vibrantbyte/spring-boot-starter</url>
+        <connection>git@github.com:vibrantbyte/spring-boot-starter.git</connection>
+        <developerConnection>https://github.com/vibrantbyte</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>vibrant</name>
+            <email>codingrun@163.com</email>
+            <url>https://github.com/vibrantbyte</url>
+        </developer>
+    </developers>
 </project>

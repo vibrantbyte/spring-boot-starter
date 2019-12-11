@@ -6,7 +6,6 @@ import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 
 import java.io.IOException;
-import java.rmi.server.ExportException;
 import java.util.List;
 
 /**
