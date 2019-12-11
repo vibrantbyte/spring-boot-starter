@@ -3,6 +3,7 @@ package io.github.vibrantbyte.storage.datasource;
 import com.alibaba.druid.pool.DruidDataSource;
 import io.github.vibrantbyte.config.hotload.refresh.ConfigReloadListener;
 import io.github.vibrantbyte.config.hotload.refresh.autoconfigure.condition.ConditionalOnFile;
+import io.github.vibrantbyte.storage.datasource.aop.DataSourceSelectorAspect;
 import io.github.vibrantbyte.storage.datasource.sharding.ShardingJdbcConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -23,7 +24,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Configuration
 @ConditionalOnFile(resources = {"file:${spring.config.location}/mysql/mysql-${spring.profiles.active}.yml", "classpath:mysql/mysql-${spring.profiles.active}.yml"})
 @ConditionalOnClass({DataSource.class})
-@Import({DynamicDataSourceConfig.class, ShardingJdbcConfig.class})
+@Import({DynamicDataSourceConfig.class, ShardingJdbcConfig.class, DataSourceGroupAspect.class,DataSourceSelectorAspect.class})
 public class DynamicDataSourceAutoConfiguration extends AbstractDynamicAutoConfiguration {
 
 

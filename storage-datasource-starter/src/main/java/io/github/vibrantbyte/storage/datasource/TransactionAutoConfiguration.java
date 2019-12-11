@@ -49,11 +49,14 @@ public class TransactionAutoConfiguration {
 
     @PostConstruct
     public void generateTransactionManagers() {
+        // 获取创建bean的工厂
         ConfigurableApplicationContext context = (ConfigurableApplicationContext) applicationContext;
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) context.getBeanFactory();
-        allDataSources.forEach((groupName, dataSource) -> {
-            String name = "txManager_" + groupName;
 
+        //数据源创建事务管理
+        allDataSources.forEach((groupName, dataSource) -> {
+            //设置主库
+            String name = "txManager_" + groupName;
             AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(DynamicDataSourceTransactionManager.class);
             ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
             abd.setScope(scopeMetadata.getScopeName());

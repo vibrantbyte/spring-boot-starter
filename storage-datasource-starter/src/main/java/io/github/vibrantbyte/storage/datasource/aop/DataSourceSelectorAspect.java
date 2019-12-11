@@ -6,18 +6,18 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.stereotype.Component;
+import org.springframework.core.annotation.Order;
 
 /**
  * @author vibrant byte
  */
 @Slf4j
 @Aspect
-@Component
+@Order(2)
 public class DataSourceSelectorAspect {
 
     @Before("@annotation(selector)")
-    public void changeDataSource(JoinPoint point,DataSourceSelector selector) {
+    public void changeDataSource(JoinPoint point,DataSourceSelector selector){
         log.debug("selector change data source :{} > {}", selector.name(), point.getSignature());
         if (selector.mandatoryMaster()){
             DynamicDataSourceHolder.setMasterRouteOnly(selector.mandatoryMaster());
