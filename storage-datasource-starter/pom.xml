@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>storage-datasource-starter</artifactId>
-    <version>1.0.5</version>
+    <version>2.1.6.RELEASE</version>
     <packaging>jar</packaging>
     <name>storage-datasource-starter</name>
     <url>https://github.com/vibrantbyte/spring-boot-starter</url>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>io.github.vibrantbyte</groupId>
             <artifactId>config-hotload-starter</artifactId>
-            <version>1.0.4</version>
+            <version>2.1.6.RELEASE</version>
         </dependency>
         <!--打包运行使用-->
         <dependency>
