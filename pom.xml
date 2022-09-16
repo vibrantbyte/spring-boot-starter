@@ -50,7 +50,7 @@
         <!--工具配置-->
         <apache.commons.lang3.version>3.8</apache.commons.lang3.version>
         <projectlombok.lombok.version>1.18.10</projectlombok.lombok.version>
-        <yml.snakeyaml.version>1.25</yml.snakeyaml.version>
+        <yml.snakeyaml.version>1.31</yml.snakeyaml.version>
         <aspectjweaver.version>1.9.4</aspectjweaver.version>
 
         <!--测试使用-->
